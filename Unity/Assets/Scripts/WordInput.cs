@@ -4,47 +4,82 @@ using UnityEngine;
 
 public class WordInput : MonoBehaviour
 {
-    public Dictionary Dct;
+    public Section Dct;
 
     public List<string> usedWords;
+    public List<string> gridWords;
     private Vector2 direction;
 
-
-    private void Update()
+    //Coloca todas as palavras no tabuleiro
+    public void PopulateBoard(int NumberOfWords)
     {
-        if (Input.GetKeyDown(KeyCode.S))
+        Debug.Log("here");
+        //loop o numero de palavras requisitadas
+        for (int i = 0; i < NumberOfWords; i++)
         {
-            setWord("First");
+            string currentWord = getValidWorld();
+            if(currentWord != null)
+            {
+                if (!setWord(currentWord))
+                {
+                    //restart map
+                }
+                else
+                {
+                    gridWords.Add(currentWord);
+                }
+            }
+
         }
     }
 
-    public void PopulateBoard(int NumberOfWords, int MaxStringSize, List<string> PossibleWords)
+    //pega palavra de lista e verifica se é aceitavel.
+    public string getValidWorld()
     {
-        //get random index from possible words
-        //see if word size is ok
-        //try to fit
-        //count total
+        //pega a lista de possiveis palavras e define o tamanho maximo como o maior lado do tabuleiro
+        List<string> PossibleWords = Dct.Words;
+        int MaxStringSize = Mathf.Max((int)CellGrid.Instance.GridSize.x, (int)CellGrid.Instance.GridSize.y);
 
-
-        //setWord();
+        //pega uma palavra aleatoria e verifica se atende as condições
+        string tryWord = PossibleWords[Random.Range(0, PossibleWords.Count)];
+        while (usedWords.Contains(tryWord) && tryWord.Length <= MaxStringSize && usedWords.Count != PossibleWords.Count)
+        {
+            usedWords.Add(tryWord);
+            tryWord = PossibleWords[Random.Range(0, PossibleWords.Count)];
+        }
+        if (usedWords.Count != PossibleWords.Count)
+        {
+            usedWords.Add(tryWord);
+            return tryWord;
+        }
+        else
+        {
+            return null;
+        }
     }
 
-    public void setWord(string word)
+    //Tenta Colocar uma palavra no tabuleiro, testando todas as direcoes e posicoes possiveis em ordem aleatoria
+    public bool setWord(string word)
     {
         List<Cell> usedCells = new List<Cell>();
         word = word.ToUpper();
         Cell target = CellGrid.Instance.RandomCell();
-        while (!CheckforEachDirection(word, target) || usedCells.Count != CellGrid.Instance.cells.Length)
+        while (!CheckforEachDirection(word, target) && usedCells.Count != CellGrid.Instance.cells.Length) //checa todas as direções e posições possiveis
         {
-
+            usedCells.Add(target);
+            while (usedCells.Contains(target) && usedCells.Count != CellGrid.Instance.cells.Length)
+            {
+                target = CellGrid.Instance.RandomCell();
+            }
         }
-        if (CheckforEachDirection(word, target))
+        if (usedCells.Count != CellGrid.Instance.cells.Length) //se passou do while e ainda existe diferença, é pq a direção deu certo
         {
-            PlaceWord(target, direction, word);
+            PlaceWord(target, direction, word); //coloca a palavra
+            return true;
         }
         else
         {
-            //repeat
+            return false;
         }
     }
 
@@ -77,7 +112,7 @@ public class WordInput : MonoBehaviour
     }
 
     //Escolhe uma direção aleatoria e verifica se é possivel colocar a palavra
-    public bool CheckforEachDirection(string word, Cell target) 
+    public bool CheckforEachDirection(string word, Cell target)
     {
         List<Vector2> PossibleDirections = new List<Vector2>() { new Vector2(1, 0), new Vector2(0, 1), new Vector2(1, 1) };
         for (int i = 0; i < 3; i++)

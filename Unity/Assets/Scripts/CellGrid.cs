@@ -20,14 +20,14 @@ public class CellGrid : MonoBehaviour
         }
     }
 
-
-
     public GameObject Cell; //Cell prefab para fazer o tabuleiro
     public RectTransform gameArea; //area que sera utilizada como tabuleiro
     public Vector2 GridSize; //numero de letras usadas
     public GridLayoutGroup grid;
 
     public Cell[,] cells;
+
+    public WordInput WI;
 
     private void OnEnable()
     {
