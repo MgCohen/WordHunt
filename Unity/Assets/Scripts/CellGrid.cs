@@ -25,14 +25,9 @@ public class CellGrid : MonoBehaviour
     public Vector2 GridSize; //numero de letras usadas
     public GridLayoutGroup grid;
 
+    //collection of all Cells
     public Cell[,] cells;
 
-    public WordInput WI;
-
-    private void OnEnable()
-    {
-        setGrid();
-    }
 
     public void setGrid() //criando o tabuleiro/grid que vai ser usado
     {
@@ -64,5 +59,13 @@ public class CellGrid : MonoBehaviour
         int y = Random.Range(0, (int)GridSize.y);
 
         return cells[x, y];
+    }
+
+    public void ResetBoard()
+    {
+        foreach(Cell cell in cells)
+        {
+            cell.setCell(true, "\0"[0]);
+        }
     }
 }

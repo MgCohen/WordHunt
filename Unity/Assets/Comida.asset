@@ -12,6 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55068eb70b12cb643b02cc5b7f1f5820, type: 3}
   m_Name: Comida
   m_EditorClassIdentifier: 
-  Theme: 
+  Theme: Comida
   ThemeImage: {fileID: 0}
-  Words: []
+  Words:
+  - biscoito
+  - bolacha
+  - brigadeiro
+  - banana
+  - laranja
+  - suco
+  - refrigerante
+  - carne
+  - frango
+  - peixe

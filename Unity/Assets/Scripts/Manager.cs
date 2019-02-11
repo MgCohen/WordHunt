@@ -4,25 +4,33 @@ using UnityEngine;
 
 public class Manager : MonoBehaviour
 {
-    public static Manager instance;
+    public Dictionary dictionary;
+    public WordInput wordInput;
+    public CellGrid cellGrid;
 
-    private void Awake()
+    public int Number;
+    private bool isFirst = true;
+
+    private void Start()
     {
-        if(instance == null)
-        {
-            instance = this;
-        }
-        else
-        {
-            DestroyImmediate(this);
-        }
+
     }
 
-    public Dictionary dictionary;
-
-    private void OnEnable()
+    public void SetBoard()
     {
-        CellGrid.Instance.WI.PopulateBoard(4);
+        if (isFirst)
+        {
+            cellGrid.setGrid();
+            isFirst = false;
+        }
+        wordInput.ValidWords = dictionary.Themes[0].Words;
+        wordInput.PopulateBoard(Number);
+    }
+
+    public void ResetBoard()
+    {
+        cellGrid.ResetBoard();
+        wordInput.ResetInput();
     }
 
 

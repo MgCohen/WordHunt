@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class WordInput : MonoBehaviour
 {
-    public Section Dct;
-
+    public List<string> ValidWords;
     public List<string> usedWords;
     public List<string> gridWords;
     private Vector2 direction;
@@ -13,12 +12,11 @@ public class WordInput : MonoBehaviour
     //Coloca todas as palavras no tabuleiro
     public void PopulateBoard(int NumberOfWords)
     {
-        Debug.Log("here");
         //loop o numero de palavras requisitadas
         for (int i = 0; i < NumberOfWords; i++)
         {
             string currentWord = getValidWorld();
-            if(currentWord != null)
+            if (currentWord != null)
             {
                 if (!setWord(currentWord))
                 {
@@ -36,18 +34,17 @@ public class WordInput : MonoBehaviour
     //pega palavra de lista e verifica se é aceitavel.
     public string getValidWorld()
     {
-        //pega a lista de possiveis palavras e define o tamanho maximo como o maior lado do tabuleiro
-        List<string> PossibleWords = Dct.Words;
+
         int MaxStringSize = Mathf.Max((int)CellGrid.Instance.GridSize.x, (int)CellGrid.Instance.GridSize.y);
 
         //pega uma palavra aleatoria e verifica se atende as condições
-        string tryWord = PossibleWords[Random.Range(0, PossibleWords.Count)];
-        while (usedWords.Contains(tryWord) && tryWord.Length <= MaxStringSize && usedWords.Count != PossibleWords.Count)
+        string tryWord = ValidWords[Random.Range(0, ValidWords.Count)];
+        while (usedWords.Contains(tryWord) && tryWord.Length <= MaxStringSize && usedWords.Count != ValidWords.Count)
         {
             usedWords.Add(tryWord);
-            tryWord = PossibleWords[Random.Range(0, PossibleWords.Count)];
+            tryWord = ValidWords[Random.Range(0, ValidWords.Count)];
         }
-        if (usedWords.Count != PossibleWords.Count)
+        if (usedWords.Count != ValidWords.Count)
         {
             usedWords.Add(tryWord);
             return tryWord;
@@ -141,4 +138,10 @@ public class WordInput : MonoBehaviour
         usedWords.Add(Word);
     }
 
+
+    public void ResetInput()
+    {
+        usedWords.Clear();
+        gridWords.Clear();
+    }
 }

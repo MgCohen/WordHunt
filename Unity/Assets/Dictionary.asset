@@ -13,10 +13,5 @@ MonoBehaviour:
   m_Name: Dictionary
   m_EditorClassIdentifier: 
   Themes:
-  - Theme: Comida
-    ThemeImage: {fileID: 0}
-    Words: []
-  - Theme: Animais
-    ThemeImage: {fileID: 0}
-    Words: []
+  - {fileID: 11400000, guid: 2d0b778fe54793245b16f65fae95c4f7, type: 2}
   BannedWords: []
