@@ -19,10 +19,12 @@ public class Manager : MonoBehaviour
     }
 
 
+    public LevelData level;
     public Dictionary dictionary;
     public WordInput wordInput;
     public CellGrid cellGrid;
     public WordFinder wordFinder;
+    public showWord showWords;
 
     public int Number;
     private bool isFirst = true;
@@ -51,5 +53,8 @@ public class Manager : MonoBehaviour
         wordFinder.ResetWords();
     }
 
-
+    public void findWord(GridedWord word)
+    {
+        showWords.displayWord(word.word);
+    }
 }
