@@ -155,4 +155,5 @@ public class GridedWord
     }
     public string word;
     public List<Cell> positions;
+    public bool isFound;
 }

@@ -5,29 +5,43 @@ using UnityEngine;
 public class WordFinder : MonoBehaviour
 {
 
-
+    //lista de palavras e a posicao de cada letra
     public List<GridedWord> gridWords;
 
+    //lista de celulas selecionadas
     public List<Cell> selectedCells;
     
+    //adiciona nova celula e verifica se encontrou palavra
     public void SelectCell(Cell cell)
     {
         selectedCells.Add(cell);
-        foreach(GridedWord gridWord in gridWords)
-        {
-            if(CheckCells(gridWord.positions, selectedCells))
-            {
-                Debug.Log("FOUND");
-            }
-        }
+        CheckCells();
     }
 
+    //remove celula e verifica se encontrou palavra
     public void DeselectCell(Cell cell)
     {
         selectedCells.Remove(cell);
+        CheckCells();
     }
 
-    public bool CheckCells(List<Cell> aListA, List<Cell> aListB)
+    //verifica se as celulas selecionadas formam uma palavra
+    public bool CheckCells()
+    {
+        foreach (GridedWord gridWord in gridWords)
+        {
+            if (CompareLists(gridWord.positions, selectedCells))
+            {
+                Debug.Log("FOUND");
+                gridWord.isFound = true;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    //algoritmo para comparar se 2 listas sao identicas independente da ordem
+    public bool CompareLists(List<Cell> aListA, List<Cell> aListB)
     {
         if (aListA == null || aListB == null || aListA.Count != aListB.Count)
             return false;

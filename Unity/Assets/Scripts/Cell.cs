@@ -14,7 +14,7 @@ public class Cell : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler, I
     private bool isClicked;
 
     [SerializeField]
-    private Animator anim;
+    private Animator anim = null;
 
     [SerializeField]
     private TextMeshProUGUI text = null; //letra da celula(texto) (null para evitar warning no console)
@@ -50,7 +50,7 @@ public class Cell : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler, I
     {
 
         bool selection = anim.GetBool("Selected");
-        if (selection)
+        if (!selection)
         {
             Manager.instance.wordFinder.SelectCell(this);
         }
