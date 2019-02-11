@@ -12,15 +12,12 @@ public class Cell : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler, I
     public char Char; //letra da celula
 
     private bool isClicked;
+
+    [SerializeField]
     private Animator anim;
 
     [SerializeField]
     private TextMeshProUGUI text = null; //letra da celula(texto) (null para evitar warning no console)
-
-    private void OnEnable()
-    {
-        anim = GetComponent<Animator>();
-    }
 
     //Setter das celulas para definir seus valores
     public void setCell(Vector2 pos, bool isRandom, char character) 
@@ -51,6 +48,16 @@ public class Cell : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler, I
 
     public void OnPointerClick(PointerEventData data)
     {
-        anim.SetBool("Selected", !anim.GetBool("Selected"));
+
+        bool selection = anim.GetBool("Selected");
+        if (selection)
+        {
+            Manager.instance.wordFinder.SelectCell(this);
+        }
+        else
+        {
+            Manager.instance.wordFinder.DeselectCell(this);
+        }
+        anim.SetBool("Selected", !selection);
     }
 }

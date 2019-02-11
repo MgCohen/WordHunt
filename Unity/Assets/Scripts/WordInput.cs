@@ -45,7 +45,6 @@ public class WordInput : MonoBehaviour
         }
         if (usedWords.Count != ValidWords.Count)
         {
-            Debug.Log("here");
             usedWords.Add(tryWord);
             return tryWord;
         }

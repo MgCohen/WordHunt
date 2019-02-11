@@ -252,6 +252,7 @@ MonoBehaviour:
   gridPos: {x: 0, y: 0}
   random: 1
   Char: 0
+  anim: {fileID: 1669043970209141230}
   text: {fileID: 8682402512760366288}
 --- !u!95 &1669043970209141230
 Animator:
