@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class Manager : MonoBehaviour
 {
+
+
+
     public Dictionary dictionary;
     public WordInput wordInput;
     public CellGrid cellGrid;
+    public WordFinder wordFinder;
 
     public int Number;
     private bool isFirst = true;
@@ -32,6 +36,7 @@ public class Manager : MonoBehaviour
         isSet = false;
         cellGrid.ResetBoard();
         wordInput.ResetInput();
+        wordFinder.ResetWords();
     }
 
 

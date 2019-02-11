@@ -6,20 +6,6 @@ using TMPro;
 
 public class CellGrid : MonoBehaviour
 {
-    public static CellGrid Instance;
-
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            DestroyImmediate(this);
-        }
-    }
-
     public GameObject Cell; //Cell prefab para fazer o tabuleiro
     public RectTransform gameArea; //area que sera utilizada como tabuleiro
     public Vector2 GridSize; //numero de letras usadas

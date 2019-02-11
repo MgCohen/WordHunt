@@ -6,8 +6,12 @@ public class WordInput : MonoBehaviour
 {
     public List<string> ValidWords;
     public List<string> usedWords;
-    public List<string> gridWords;
     private Vector2 direction;
+
+    public CellGrid grid;
+
+
+    public WordFinder finder;
 
     //Coloca todas as palavras no tabuleiro
     public void PopulateBoard(int NumberOfWords)
@@ -20,13 +24,9 @@ public class WordInput : MonoBehaviour
             {
                 currentWord = getValidWorld();
             }
-            if(currentWord != null)
+            if (currentWord == null)
             {
-                gridWords.Add(currentWord);
-            }
-            else
-            {
-                //repeat
+                //repeat because couldn't finish
             }
         }
     }
@@ -35,7 +35,7 @@ public class WordInput : MonoBehaviour
     public string getValidWorld()
     {
 
-        int MaxStringSize = Mathf.Max((int)CellGrid.Instance.GridSize.x, (int)CellGrid.Instance.GridSize.y);
+        int MaxStringSize = Mathf.Max((int)grid.GridSize.x, (int)grid.GridSize.y);
         //pega uma palavra aleatoria e verifica se atende as condições
         string tryWord = ValidWords[Random.Range(0, ValidWords.Count)];
         while ((usedWords.Contains(tryWord) || tryWord.Length >= MaxStringSize) && usedWords.Count != ValidWords.Count)
@@ -60,16 +60,16 @@ public class WordInput : MonoBehaviour
     {
         List<Cell> usedCells = new List<Cell>();
         word = word.ToUpper();
-        Cell target = CellGrid.Instance.RandomCell();
-        while (!CheckforEachDirection(word, target) && usedCells.Count != CellGrid.Instance.cells.Length) //checa todas as direções e posições possiveis
+        Cell target = grid.RandomCell();
+        while (!CheckforEachDirection(word, target) && usedCells.Count != grid.cells.Length) //checa todas as direções e posições possiveis
         {
             usedCells.Add(target);
-            while (usedCells.Contains(target) && usedCells.Count != CellGrid.Instance.cells.Length)
+            while (usedCells.Contains(target) && usedCells.Count != grid.cells.Length)
             {
-                target = CellGrid.Instance.RandomCell();
+                target = grid.RandomCell();
             }
         }
-        if (usedCells.Count != CellGrid.Instance.cells.Length) //se passou do while e ainda existe diferença, é pq a direção deu certo
+        if (usedCells.Count != grid.cells.Length) //se passou do while e ainda existe diferença, é pq a direção deu certo
         {
             PlaceWord(target, direction, word); //coloca a palavra
             return true;
@@ -86,7 +86,7 @@ public class WordInput : MonoBehaviour
     public bool CheckFit(string word, Cell target, Vector2 dir)
     {
         int wordSize = word.Length;
-        if (((target.gridPos.x * dir.x) + wordSize > CellGrid.Instance.GridSize.x) || ((target.gridPos.y * dir.y) + wordSize > CellGrid.Instance.GridSize.y))
+        if (((target.gridPos.x * dir.x) + wordSize > grid.GridSize.x) || ((target.gridPos.y * dir.y) + wordSize > grid.GridSize.y))
         {
             return false;
         }
@@ -94,7 +94,7 @@ public class WordInput : MonoBehaviour
         {
             for (int i = 0; i < wordSize; i++)
             {
-                Cell newTarget = CellGrid.Instance.cells[(int)(target.gridPos.x + (dir.x * i)), (int)(target.gridPos.y + (dir.y * i))];
+                Cell newTarget = grid.cells[(int)(target.gridPos.x + (dir.x * i)), (int)(target.gridPos.y + (dir.y * i))];
                 if (!newTarget.random && newTarget.Char != word.ToUpper()[i])
                 {
                     return false;
@@ -127,16 +127,33 @@ public class WordInput : MonoBehaviour
     //Coloca a palavra verificada nas celulas verificadas nos metodos anteriores
     public void PlaceWord(Cell target, Vector2 Dir, string Word)
     {
+        List<Cell> usedCells = new List<Cell>();
         for (int i = 0; i < Word.Length; i++)
         {
-            CellGrid.Instance.cells[(int)(target.gridPos.x + (Dir.x * i)), (int)(target.gridPos.y + (Dir.y * i))].setCell(false, Word[i]);
+            Cell targetCell = grid.cells[(int)(target.gridPos.x + (Dir.x * i)), (int)(target.gridPos.y + (Dir.y * i))];
+            targetCell.setCell(false, Word[i]);
+            usedCells.Add(targetCell);
         }
+        //cria uma instancia de GridedWords para ser usado na localização da palavra
+        finder.gridWords.Add(new GridedWord(Word, usedCells));
     }
 
-
+    //reset palavras usadas para refazer o board
     public void ResetInput()
     {
         usedWords.Clear();
-        gridWords.Clear();
     }
+}
+
+//instance of word that was grided, so we can find it's position
+[System.Serializable]
+public class GridedWord
+{
+    public GridedWord(string thisWord, List<Cell> myPos)
+    {
+        word = thisWord;
+        positions = myPos;
+    }
+    public string word;
+    public List<Cell> positions;
 }

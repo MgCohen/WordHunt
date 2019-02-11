@@ -172,6 +172,7 @@ GameObject:
   - component: {fileID: 8052077428812162161}
   - component: {fileID: 7826706470766505680}
   - component: {fileID: 1074088283174497385}
+  - component: {fileID: 1669043970209141230}
   m_Layer: 5
   m_Name: Cell
   m_TagString: Untagged
@@ -220,7 +221,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.7735849, g: 0.7735849, b: 0.7735849, a: 0.49803922}
+  m_Color: {r: 0.9056604, g: 0.9056604, b: 0.9056604, a: 0.49803922}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -250,5 +251,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridPos: {x: 0, y: 0}
   random: 1
-  Char: 
+  Char: 0
   text: {fileID: 8682402512760366288}
+--- !u!95 &1669043970209141230
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6378677252573487967}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: dd75878249cce2c4c8937ff5a66beb27, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
