@@ -20,4 +20,10 @@ public class Cell : MonoBehaviour
         text.text = character.ToString();
         Char = character;
     }
+
+    public void setCell(bool isRandom, char Character)
+    {
+        random = isRandom;
+        Char = Character;
+    }
 }

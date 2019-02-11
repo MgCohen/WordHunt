@@ -6,16 +6,32 @@ using TMPro;
 
 public class CellGrid : MonoBehaviour
 {
+    public static CellGrid Instance;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            DestroyImmediate(this);
+        }
+    }
+
+
 
     public GameObject Cell; //Cell prefab para fazer o tabuleiro
     public RectTransform gameArea; //area que sera utilizada como tabuleiro
     public Vector2 GridSize; //numero de letras usadas
     public GridLayoutGroup grid;
 
-    public List<Cell> cells;
+    public Cell[,] cells;
 
     private void OnEnable()
     {
+        cells = new Cell[(int)GridSize.x, (int)GridSize.y];
         grid.cellSize = getCellSize();
         for (int i = 0; i < GridSize.y; i++)
         {
@@ -24,7 +40,8 @@ public class CellGrid : MonoBehaviour
                 GameObject newCellObj = Instantiate(Cell, gameArea);
                 Cell newCell = newCellObj.GetComponent<Cell>();
                 newCell.setCell(new Vector2(j, i), false, RandomCharacter.getCharacter());
-                cells.Add(newCell);
+                //cells.Add(new GridedCell(newCell, new Vector2(j, i)));
+                cells[j, i] = newCell;
             }
         }
     }
@@ -37,4 +54,17 @@ public class CellGrid : MonoBehaviour
         cellSize = area / GridSize;
         return cellSize;
     }
+}
+
+[System.Serializable]
+public class GridedCell
+{
+
+    public GridedCell(Cell myCell, Vector2 myPos)
+    {
+        cell = myCell;
+        Pos = myPos;
+    }
+    public Cell cell;
+    public Vector2 Pos;
 }
