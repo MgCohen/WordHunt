@@ -16,18 +16,18 @@ public class WordInput : MonoBehaviour
         for (int i = 0; i < NumberOfWords; i++)
         {
             string currentWord = getValidWorld();
-            if (currentWord != null)
+            while (!setWord(currentWord) && currentWord != null)
             {
-                if (!setWord(currentWord))
-                {
-                    //restart map
-                }
-                else
-                {
-                    gridWords.Add(currentWord);
-                }
+                currentWord = getValidWorld();
             }
-
+            if(currentWord != null)
+            {
+                gridWords.Add(currentWord);
+            }
+            else
+            {
+                //repeat
+            }
         }
     }
 
@@ -36,16 +36,16 @@ public class WordInput : MonoBehaviour
     {
 
         int MaxStringSize = Mathf.Max((int)CellGrid.Instance.GridSize.x, (int)CellGrid.Instance.GridSize.y);
-
         //pega uma palavra aleatoria e verifica se atende as condições
         string tryWord = ValidWords[Random.Range(0, ValidWords.Count)];
-        while (usedWords.Contains(tryWord) && tryWord.Length <= MaxStringSize && usedWords.Count != ValidWords.Count)
+        while ((usedWords.Contains(tryWord) || tryWord.Length >= MaxStringSize) && usedWords.Count != ValidWords.Count)
         {
             usedWords.Add(tryWord);
             tryWord = ValidWords[Random.Range(0, ValidWords.Count)];
         }
         if (usedWords.Count != ValidWords.Count)
         {
+            Debug.Log("here");
             usedWords.Add(tryWord);
             return tryWord;
         }
@@ -88,22 +88,18 @@ public class WordInput : MonoBehaviour
         int wordSize = word.Length;
         if (((target.gridPos.x * dir.x) + wordSize > CellGrid.Instance.GridSize.x) || ((target.gridPos.y * dir.y) + wordSize > CellGrid.Instance.GridSize.y))
         {
-            Debug.Log("don't fit");
             return false;
         }
         else
         {
-            Debug.Log("fits");
             for (int i = 0; i < wordSize; i++)
             {
                 Cell newTarget = CellGrid.Instance.cells[(int)(target.gridPos.x + (dir.x * i)), (int)(target.gridPos.y + (dir.y * i))];
                 if (!newTarget.random && newTarget.Char != word.ToUpper()[i])
                 {
-                    Debug.Log("already used");
                     return false;
                 }
             }
-            Debug.Log("Match");
             return true;
         }
     }
@@ -135,7 +131,6 @@ public class WordInput : MonoBehaviour
         {
             CellGrid.Instance.cells[(int)(target.gridPos.x + (Dir.x * i)), (int)(target.gridPos.y + (Dir.y * i))].setCell(false, Word[i]);
         }
-        usedWords.Add(Word);
     }
 
 

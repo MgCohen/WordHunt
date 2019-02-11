@@ -10,11 +10,7 @@ public class Manager : MonoBehaviour
 
     public int Number;
     private bool isFirst = true;
-
-    private void Start()
-    {
-
-    }
+    private bool isSet = false;
 
     public void SetBoard()
     {
@@ -23,12 +19,17 @@ public class Manager : MonoBehaviour
             cellGrid.setGrid();
             isFirst = false;
         }
-        wordInput.ValidWords = dictionary.Themes[0].Words;
-        wordInput.PopulateBoard(Number);
+        if (isSet == false)
+        {
+            wordInput.ValidWords = dictionary.Themes[0].Words;
+            wordInput.PopulateBoard(Number);
+            isSet = true;
+        }
     }
 
     public void ResetBoard()
     {
+        isSet = false;
         cellGrid.ResetBoard();
         wordInput.ResetInput();
     }
