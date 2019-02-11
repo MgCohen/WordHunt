@@ -4,7 +4,19 @@ using UnityEngine;
 
 public class Manager : MonoBehaviour
 {
+    public static Manager instance;
 
+    private void Awake()
+    {
+        if(instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            DestroyImmediate(this);
+        }
+    }
 
 
     public Dictionary dictionary;
