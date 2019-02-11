@@ -13,7 +13,10 @@ public class Cell : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI text = null; //letra da celula(texto) (null para evitar warning no console)
 
-    public void setCell(Vector2 pos, bool isRandom, char character) //substituindo um constructor devido a ser um prefab
+
+
+    //Setter das celulas para definir seus valores
+    public void setCell(Vector2 pos, bool isRandom, char character) 
     {
         gridPos = pos;
         random = isRandom;
@@ -25,5 +28,7 @@ public class Cell : MonoBehaviour
     {
         random = isRandom;
         Char = Character;
+        text.text = Character.ToString();
+        
     }
 }

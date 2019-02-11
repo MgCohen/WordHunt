@@ -31,16 +31,19 @@ public class CellGrid : MonoBehaviour
 
     private void OnEnable()
     {
+        setGrid();
+    }
+
+    public void setGrid() //criando o tabuleiro/grid que vai ser usado
+    {
         cells = new Cell[(int)GridSize.x, (int)GridSize.y];
         grid.cellSize = getCellSize();
         for (int i = 0; i < GridSize.y; i++)
         {
             for (int j = 0; j < GridSize.x; j++)
             {
-                GameObject newCellObj = Instantiate(Cell, gameArea);
-                Cell newCell = newCellObj.GetComponent<Cell>();
-                newCell.setCell(new Vector2(j, i), false, RandomCharacter.getCharacter());
-                //cells.Add(new GridedCell(newCell, new Vector2(j, i)));
+                Cell newCell = (Instantiate(Cell, gameArea)).GetComponent<Cell>();
+                newCell.setCell(new Vector2(j, i), true, "\0"[0]);
                 cells[j, i] = newCell;
             }
         }
@@ -54,17 +57,12 @@ public class CellGrid : MonoBehaviour
         cellSize = area / GridSize;
         return cellSize;
     }
-}
 
-[System.Serializable]
-public class GridedCell
-{
-
-    public GridedCell(Cell myCell, Vector2 myPos)
+    public Cell RandomCell() //pegar uma celula aleatoria do grid
     {
-        cell = myCell;
-        Pos = myPos;
+        int x = Random.Range(0, (int)GridSize.x);
+        int y = Random.Range(0, (int)GridSize.y);
+
+        return cells[x, y];
     }
-    public Cell cell;
-    public Vector2 Pos;
 }
