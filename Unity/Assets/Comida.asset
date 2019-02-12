@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Comida
   m_EditorClassIdentifier: 
   Theme: Comida
-  ThemeImage: {fileID: 0}
+  ThemeImage: {fileID: 21300000, guid: 6f9efccea6ef2e74c8f593526b8279b4, type: 3}
   Words:
   - biscoito
   - bolacha
