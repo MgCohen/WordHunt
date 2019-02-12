@@ -25,7 +25,7 @@ public class CellGrid : MonoBehaviour
             for (int j = 0; j < GridSize.x; j++)
             {
                 Cell newCell = (Instantiate(Cell, gameArea)).GetComponent<Cell>();
-                newCell.setCell(new Vector2(j, i), true, "\0"[0]);
+                newCell.setCell(new Vector2(j, i), true, RandomCharacter.getCharacter());
                 cells[j, i] = newCell;
             }
         }

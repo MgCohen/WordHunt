@@ -23,15 +23,13 @@ public class WordInput : MonoBehaviour
         for (int i = 0; i < NumberOfWords; i++)
         {
             string currentWord = getValidWorld();
-            Debug.Log(1);
-            while (!setWord(currentWord) && currentWord != null)
+
+            while (!setWord(currentWord) && currentWord != null) //verifica se a palavra pode ser encaixada ou se ainda existem palavras
             {
-                Debug.Log("on Loop");
                 currentWord = getValidWorld();
             }
             if (currentWord == null)
             {
-                Debug.Log("error");
                 fail = true;
                 break;
 
@@ -54,7 +52,6 @@ public class WordInput : MonoBehaviour
         int MaxStringSize = Mathf.Max((int)grid.GridSize.x, (int)grid.GridSize.y);
         //pega uma palavra aleatoria e verifica se atende as condições
         string tryWord = ValidWords[Random.Range(0, ValidWords.Count)];
-        Debug.Log(3);
         while ((usedWords.Contains(tryWord) || tryWord.Length >= MaxStringSize) && usedWords.Count != ValidWords.Count)
         {
             usedWords.Add(tryWord);
