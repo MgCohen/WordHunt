@@ -9,22 +9,20 @@ public class WordInput : MonoBehaviour
     private Vector2 direction;
 
     public CellGrid grid;
-
-
     public WordFinder finder;
 
-    public int counter;
-    public bool fail;
+    private bool fail;
 
     //Coloca todas as palavras no tabuleiro
     public void PopulateBoard(int NumberOfWords)
     {
+        int wordCounter = 0;
         //loop o numero de palavras requisitadas
         for (int i = 0; i < NumberOfWords; i++)
         {
             string currentWord = getValidWorld();
-
-            while (!setWord(currentWord) && currentWord != null) //verifica se a palavra pode ser encaixada ou se ainda existem palavras
+            //verifica se a palavra pode ser encaixada ou se ainda existem palavras
+            while (!setWord(currentWord) && currentWord != null) 
             {
                 currentWord = getValidWorld();
             }
@@ -35,12 +33,38 @@ public class WordInput : MonoBehaviour
 
             }
         }
+        //se a criação do tabuleiro falhou, recomeçar
         if (fail)
         {
             fail = false;
             Manager.instance.ResetBoard();
             Manager.instance.SetBoard();
-
+        }
+        else
+        {
+            ////se houver algum palavrão ou palavra repetida de forma imprevista, refazer tabuleiro
+            foreach (string bannedWord in Manager.instance.dictionary.BannedWords)
+            {
+                if (WordFilter.SearchWord(bannedWord) != null)
+                {
+                    fail = false;
+                    Manager.instance.ResetBoard();
+                    Manager.instance.SetBoard();
+                }
+            }
+            foreach(string repeatedWord in Manager.instance.level.Theme.Words)
+            {
+                if(WordFilter.SearchWord(repeatedWord) != null)
+                {
+                    wordCounter += 1;
+                }
+            }
+            if(wordCounter > Manager.instance.gridWords.Count)
+            {
+                fail = false;
+                Manager.instance.ResetBoard();
+                Manager.instance.SetBoard();
+            }
         }
 
     }
@@ -74,6 +98,12 @@ public class WordInput : MonoBehaviour
         if (word == null)
         {
             return false;
+        }
+        if(WordFilter.SearchWord(word) != null)
+        {
+            int index = Random.Range(0, 3);
+            Manager.instance.gridWords.Add(WordFilter.SearchWord(word, index));
+            return true;
         }
         List<Cell> usedCells = new List<Cell>();
         word = word.ToUpper();
