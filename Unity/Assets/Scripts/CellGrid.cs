@@ -15,8 +15,9 @@ public class CellGrid : MonoBehaviour
     public Cell[,] cells;
 
 
-    public void setGrid() //criando o tabuleiro/grid que vai ser usado
+    public void setGrid(Vector2 gSize) //criando o tabuleiro/grid que vai ser usado
     {
+        GridSize = gSize;
         cells = new Cell[(int)GridSize.x, (int)GridSize.y];
         grid.cellSize = getCellSize();
         for (int i = 0; i < GridSize.y; i++)

@@ -284,8 +284,9 @@ GameObject:
   - component: {fileID: 109174325}
   - component: {fileID: 109174327}
   - component: {fileID: 109174326}
+  - component: {fileID: 109174328}
   m_Layer: 5
-  m_Name: TextMeshPro Text
+  m_Name: WordCount
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -435,6 +436,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 109174324}
   m_CullTransparentMesh: 0
+--- !u!114 &109174328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 109174324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30abe08e8d3663e41814cf13dcb7d7e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 109174326}
 --- !u!1 &364206000
 GameObject:
   m_ObjectHideFlags: 0
@@ -862,7 +876,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 396, y: 252}
+  m_AnchoredPosition: {x: 285.1, y: 45.3}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &988403098
@@ -991,7 +1005,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 396, y: 326}
+  m_AnchoredPosition: {x: 285.09998, y: 119.29999}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1144409454
@@ -1113,7 +1127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75646d40583a8454cb1ef317f9b13115, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: {fileID: 0}
+  level: {fileID: 11400000, guid: d0cc956be82e5ec46adb46fd9e82f246, type: 2}
   dictionary: {fileID: 11400000, guid: 6a6553d5545f78d46b2de42feb396a80, type: 2}
   wordInput: {fileID: 1383354321}
   cellGrid: {fileID: 1383354319}
@@ -2006,6 +2020,7 @@ GameObject:
   - component: {fileID: 1936590649}
   - component: {fileID: 1936590648}
   - component: {fileID: 1936590650}
+  - component: {fileID: 1936590651}
   m_Layer: 5
   m_Name: Theme
   m_TagString: Untagged
@@ -2175,6 +2190,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1936590651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1936590646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed18791854417664cbfb4b2b91706906, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2041552707
 GameObject:
   m_ObjectHideFlags: 0

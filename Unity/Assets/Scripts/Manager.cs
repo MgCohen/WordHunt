@@ -26,21 +26,23 @@ public class Manager : MonoBehaviour
     public WordFinder wordFinder;
     public showWord showWords;
 
-    public int Number;
     private bool isFirst = true;
     private bool isSet = false;
+
+
+    public int wordsFound;
 
     public void SetBoard()
     {
         if (isFirst)
         {
-            cellGrid.setGrid();
+            cellGrid.setGrid(level.GridSize);
             isFirst = false;
         }
         if (isSet == false)
         {
-            wordInput.ValidWords = dictionary.Themes[0].Words;
-            wordInput.PopulateBoard(Number);
+            wordInput.ValidWords = level.Theme.Words;
+            wordInput.PopulateBoard(level.NumberOfWords);
             isSet = true;
         }
     }
@@ -51,10 +53,18 @@ public class Manager : MonoBehaviour
         cellGrid.ResetBoard();
         wordInput.ResetInput();
         wordFinder.ResetWords();
+        showWords.ClearWords();
+
+        wordsFound = 0;
     }
 
     public void findWord(GridedWord word)
     {
+        wordsFound += 1;
+        if(wordsFound == level.NumberOfWords)
+        {
+            //win
+        }
         showWords.displayWord(word.word);
     }
 }

@@ -7,7 +7,6 @@ public class LevelData : ScriptableObject
 {
 
     public int NumberOfWords;
-    public int WordsFound;
     public Vector2 GridSize;
     public Section Theme;
 }
