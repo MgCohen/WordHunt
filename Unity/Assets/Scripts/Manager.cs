@@ -8,7 +8,7 @@ public class Manager : MonoBehaviour
 
     private void Awake()
     {
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
         }
@@ -41,6 +41,7 @@ public class Manager : MonoBehaviour
         }
         if (isSet == false)
         {
+            level.gridWords.Clear();
             wordInput.ValidWords = level.Theme.Words;
             wordInput.PopulateBoard(level.NumberOfWords);
             isSet = true;
@@ -61,7 +62,6 @@ public class Manager : MonoBehaviour
         isSet = false;
         cellGrid.ResetBoard();
         wordInput.ResetInput();
-        wordFinder.ResetWords();
         showWords.ClearWords();
 
         wordsFound = 0;
@@ -71,7 +71,7 @@ public class Manager : MonoBehaviour
     public void findWord(GridedWord word)
     {
         wordsFound += 1;
-        if(wordsFound == level.NumberOfWords)
+        if (wordsFound == level.NumberOfWords)
         {
             //win
         }

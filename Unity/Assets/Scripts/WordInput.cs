@@ -153,7 +153,7 @@ public class WordInput : MonoBehaviour
             usedCells.Add(targetCell);
         }
         //cria uma instancia de GridedWords para ser usado na localização da palavra
-        finder.gridWords.Add(new GridedWord(Word, usedCells));
+        Manager.instance.level.gridWords.Add(new GridedWord(Word, usedCells));
     }
 
     //reset palavras usadas para refazer o board
@@ -163,16 +163,4 @@ public class WordInput : MonoBehaviour
     }
 }
 
-//instance of word that was grided, so we can find it's position
-[System.Serializable]
-public class GridedWord
-{
-    public GridedWord(string thisWord, List<Cell> myPos)
-    {
-        word = thisWord;
-        positions = myPos;
-    }
-    public string word;
-    public List<Cell> positions;
-    public bool isFound;
-}
+
