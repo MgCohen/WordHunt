@@ -35,7 +35,7 @@ public class WordFinder : MonoBehaviour
     //verifica se as celulas selecionadas formam uma palavra
     public bool CheckCells()
     {
-        foreach (GridedWord gridWord in Manager.instance.level.gridWords)
+        foreach (GridedWord gridWord in Manager.instance.gridWords)
         {
             if (Utility.CompareLists(gridWord.positions, selectedCells))
             {
@@ -52,4 +52,39 @@ public class WordFinder : MonoBehaviour
         return false;
     }
 
+}
+
+//classe usada para definir uma palavra no grid e ter sua localização possivel
+[System.Serializable]
+public class GridedWord
+{
+    public GridedWord(string thisWord, List<Cell> myPos)
+    {
+        word = thisWord;
+        fillList(myPos);
+        //positions = myPos;
+        wordChars.AddRange(thisWord.ToUpper());
+    }
+
+    public GridedWord(List<char> letters, List<Cell> myPos)
+    {
+        word = new string(letters.ToArray());
+        fillList(myPos);
+        //positions = myPos;
+        wordChars = letters;
+    }
+
+    public void fillList(List<Cell> newPos)
+    {
+        positions.Clear();
+        foreach (Cell cell in newPos)
+        {
+            positions.Add(cell);
+        }
+    }
+
+    public string word;
+    public List<Cell> positions = new List<Cell>();
+    public bool isFound;
+    public List<char> wordChars = new List<char>();
 }

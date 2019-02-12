@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WordFilter : MonoBehaviour
 {
-    public string Word;
+    public Section sec;
     public List<GridedWord> foundWords;
 
     public List<char> chars = new List<char>();
@@ -13,28 +14,33 @@ public class WordFilter : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.I))
         {
-            //test();
-            //getLines();
-            string str = new string(chars.ToArray());
-            Debug.Log(str);
+            getLines();
         }
     }
+
 
     public void getLines()
     {
-        List<Cell> targets = findFirstLetter(Word[0]);
-        foreach(Cell cell in targets)
+        foreach (string Word in sec.Words)
         {
-            checkOnBoard(cell);
+            Debug.Log("Next Word");
+            List<Cell> targets = findFirstLetter(Word.ToUpper()[0]);
+            foreach (Cell cell in targets)
+            {
+                cell.GetComponent<Image>().enabled = false;
+                Debug.Log("Next Cell");
+                checkOnBoard(cell, Word);
+            }
         }
     }
 
+    //procura todas as posicoes da primeira letra da palavra requisitada
     public List<Cell> findFirstLetter(char Char)
     {
         List<Cell> letters = new List<Cell>();
-        foreach(Cell cell in Manager.instance.cellGrid.cells)
+        foreach (Cell cell in Manager.instance.cellGrid.cells)
         {
-            if(cell.Char == Char)
+            if (cell.Char == Char)
             {
                 letters.Add(cell);
             }
@@ -43,19 +49,37 @@ public class WordFilter : MonoBehaviour
         return letters;
     }
 
-    public void checkOnBoard(Cell target)
+    //verifica se a palavra existe no endereço requisitado, retorna a palavra no grid se verdadeiro
+    public void checkOnBoard(Cell target, string word)
     {
         List<Cell> targetCells = new List<Cell>();
-        for (int i = 1; i < Word.Length; i++)
+
+        Vector2 dir = new Vector2(1, 0);
+
+        for (int i = 1; i < word.Length; i++)
         {
-            Debug.Log(Word[i]);
-            if (target.gridPos.x + i > Manager.instance.cellGrid.GridSize.x || Manager.instance.cellGrid.cells[(int)target.gridPos.x + i,(int)target.gridPos.y].Char != Word[i])
+            Debug.Log(i);
+            if ((target.gridPos+(dir * i)) == Manager.instance.cellGrid.GridSize)
             {
-                Debug.Log("not the same");
-                return;
+                Debug.Log("bigger than grid");
+                targetCells.Clear();
+                break;
             }
+            if (Manager.instance.cellGrid.cells[(int)target.gridPos.x + i, (int)target.gridPos.y].Char != word.ToUpper()[i])
+            {
+                Debug.Log(new Vector2((int)target.gridPos.x + i, (int)target.gridPos.y) + " " + Manager.instance.cellGrid.cells[(int)target.gridPos.x + i, (int)target.gridPos.y].Char + " not match " + word.ToUpper()[i]);
+                targetCells.Clear();
+                break;
+            }
+            targetCells.Add(Manager.instance.cellGrid.cells[(int)target.gridPos.x + i, (int)target.gridPos.y]);
+            Debug.Log(word.ToUpper()[i]);
         }
-        Debug.Log("found");
+        if (targetCells.Count > 0)
+        {
+            Debug.Log("found");
+            foundWords.Add(new GridedWord(word, targetCells));
+        }
+        targetCells.Clear();
     }
 
 }

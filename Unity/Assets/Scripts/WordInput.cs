@@ -78,7 +78,6 @@ public class WordInput : MonoBehaviour
         List<Cell> usedCells = new List<Cell>();
         word = word.ToUpper();
         Cell target = grid.RandomCell();
-        Debug.Log(2);
         while (!CheckforEachDirection(word, target) && usedCells.Count != grid.cells.Length) //checa todas as direções e posições possiveis
         {
             usedCells.Add(target);
@@ -153,7 +152,7 @@ public class WordInput : MonoBehaviour
             usedCells.Add(targetCell);
         }
         //cria uma instancia de GridedWords para ser usado na localização da palavra
-        Manager.instance.level.gridWords.Add(new GridedWord(Word, usedCells));
+        Manager.instance.gridWords.Add(new GridedWord(Word, usedCells));
     }
 
     //reset palavras usadas para refazer o board

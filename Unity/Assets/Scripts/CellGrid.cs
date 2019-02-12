@@ -52,7 +52,7 @@ public class CellGrid : MonoBehaviour
     {
         foreach(Cell cell in cells)
         {
-            cell.setCell(true, "\0"[0]);
+            cell.setCell(true, Utility.getCharacter());
         }
     }
 }

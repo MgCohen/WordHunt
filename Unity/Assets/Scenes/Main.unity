@@ -1108,6 +1108,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1150573071}
   - component: {fileID: 1150573070}
+  - component: {fileID: 1150573072}
   m_Layer: 0
   m_Name: SceneManager
   m_TagString: Untagged
@@ -1148,6 +1149,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1150573072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1150573069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dd9507d2c7e8b340a5cb2dce1a7857b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sec: {fileID: 0}
+  foundWords: []
+  chars: 
 --- !u!1 &1383354317
 GameObject:
   m_ObjectHideFlags: 0
@@ -1183,10 +1199,10 @@ RectTransform:
   m_Father: {fileID: 1463471856}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -5.4}
-  m_SizeDelta: {x: 329.8, y: 329.8}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: -30}
+  m_SizeDelta: {x: -356.2, y: -56.200012}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1383354319
 MonoBehaviour:
@@ -1216,7 +1232,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9be9b90c9cc17aa42a24f5de7f3cf832, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridWords: []
   selectedCells: []
 --- !u!114 &1383354321
 MonoBehaviour:
@@ -1234,6 +1249,8 @@ MonoBehaviour:
   usedWords: []
   grid: {fileID: 1383354319}
   finder: {fileID: 1383354320}
+  counter: 0
+  fail: 0
 --- !u!1 &1398620685
 GameObject:
   m_ObjectHideFlags: 0
@@ -1342,7 +1359,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0.0000076293945, y: 0}
+  m_AnchoredPosition: {x: 0.0000076293945, y: 0.0000076293945}
   m_SizeDelta: {x: 162, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1448162391
@@ -1430,7 +1447,7 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -2044,7 +2061,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -40.800003}
+  m_AnchoredPosition: {x: 0, y: -41}
   m_SizeDelta: {x: 144.5, y: 141.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1936590648

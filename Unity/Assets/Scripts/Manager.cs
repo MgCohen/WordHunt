@@ -29,6 +29,8 @@ public class Manager : MonoBehaviour
     private bool isFirst = true;
     private bool isSet = false;
 
+    //lista de palavras e a posicao de cada letra
+    public List<GridedWord> gridWords;
 
     public int wordsFound;
 
@@ -41,7 +43,7 @@ public class Manager : MonoBehaviour
         }
         if (isSet == false)
         {
-            level.gridWords.Clear();
+            gridWords.Clear();
             wordInput.ValidWords = level.Theme.Words;
             wordInput.PopulateBoard(level.NumberOfWords);
             isSet = true;
