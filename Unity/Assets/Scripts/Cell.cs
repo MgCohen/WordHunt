@@ -18,7 +18,7 @@ public class Cell : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler, I
     private TextMeshProUGUI text = null; //letra da celula(texto) (null para evitar warning no console)
 
     //Setter das celulas para definir seus valores
-    public void setCell(Vector2 pos, bool isRandom, char character) 
+    public void setCell(Vector2 pos, bool isRandom, char character)
     {
         gridPos = pos;
         random = isRandom;
@@ -48,6 +48,7 @@ public class Cell : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler, I
     {
 
         bool selection = anim.GetBool("Selected");
+        anim.SetBool("Selected", !selection);
         if (!selection)
         {
             Manager.instance.wordFinder.SelectCell(this);
@@ -56,6 +57,6 @@ public class Cell : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler, I
         {
             Manager.instance.wordFinder.DeselectCell(this);
         }
-        anim.SetBool("Selected", !selection);
+
     }
 }

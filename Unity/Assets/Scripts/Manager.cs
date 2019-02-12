@@ -45,6 +45,15 @@ public class Manager : MonoBehaviour
             wordInput.PopulateBoard(level.NumberOfWords);
             isSet = true;
         }
+        Debug.Log("set");
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            StartCoroutine(testing());
+        }
     }
 
     public void ResetBoard()
@@ -56,6 +65,7 @@ public class Manager : MonoBehaviour
         showWords.ClearWords();
 
         wordsFound = 0;
+        Debug.Log("Reset");
     }
 
     public void findWord(GridedWord word)
@@ -67,4 +77,17 @@ public class Manager : MonoBehaviour
         }
         showWords.displayWord(word.word);
     }
+
+
+    IEnumerator testing()
+    {
+        while (true)
+        {
+            SetBoard();
+            yield return null;
+            ResetBoard();
+            yield return null;
+        }
+    }
+
 }

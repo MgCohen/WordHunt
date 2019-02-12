@@ -13,6 +13,9 @@ public class WordInput : MonoBehaviour
 
     public WordFinder finder;
 
+    public int counter;
+    public bool fail;
+
     //Coloca todas as palavras no tabuleiro
     public void PopulateBoard(int NumberOfWords)
     {
@@ -20,16 +23,28 @@ public class WordInput : MonoBehaviour
         for (int i = 0; i < NumberOfWords; i++)
         {
             string currentWord = getValidWorld();
+            Debug.Log(1);
             while (!setWord(currentWord) && currentWord != null)
             {
+                Debug.Log("on Loop");
                 currentWord = getValidWorld();
             }
             if (currentWord == null)
             {
-                Manager.instance.ResetBoard();
-                Manager.instance.SetBoard();
+                Debug.Log("error");
+                fail = true;
+                break;
+
             }
         }
+        if (fail)
+        {
+            fail = false;
+            Manager.instance.ResetBoard();
+            Manager.instance.SetBoard();
+
+        }
+
     }
 
     //pega palavra de lista e verifica se é aceitavel.
@@ -39,6 +54,7 @@ public class WordInput : MonoBehaviour
         int MaxStringSize = Mathf.Max((int)grid.GridSize.x, (int)grid.GridSize.y);
         //pega uma palavra aleatoria e verifica se atende as condições
         string tryWord = ValidWords[Random.Range(0, ValidWords.Count)];
+        Debug.Log(3);
         while ((usedWords.Contains(tryWord) || tryWord.Length >= MaxStringSize) && usedWords.Count != ValidWords.Count)
         {
             usedWords.Add(tryWord);
@@ -58,13 +74,14 @@ public class WordInput : MonoBehaviour
     //Tenta Colocar uma palavra no tabuleiro, testando todas as direcoes e posicoes possiveis em ordem aleatoria
     public bool setWord(string word)
     {
-        if(word == null)
+        if (word == null)
         {
             return false;
         }
         List<Cell> usedCells = new List<Cell>();
         word = word.ToUpper();
         Cell target = grid.RandomCell();
+        Debug.Log(2);
         while (!CheckforEachDirection(word, target) && usedCells.Count != grid.cells.Length) //checa todas as direções e posições possiveis
         {
             usedCells.Add(target);
