@@ -10,7 +10,7 @@ public class WordFinder : MonoBehaviour
 
     //lista de celulas selecionadas
     public List<Cell> selectedCells;
-    
+
     //adiciona nova celula e verifica se encontrou palavra
     public void SelectCell(Cell cell)
     {
@@ -25,6 +25,16 @@ public class WordFinder : MonoBehaviour
         CheckCells();
     }
 
+    //limpa seleção visualmente e lista
+    public void ClearSelection()
+    {
+        foreach (Cell cell in selectedCells)
+        {
+            cell.GetComponent<Animator>().SetBool("Selected", false);
+        }
+        selectedCells.Clear();
+    }
+
     //verifica se as celulas selecionadas formam uma palavra
     public bool CheckCells()
     {
@@ -32,9 +42,14 @@ public class WordFinder : MonoBehaviour
         {
             if (CompareLists(gridWord.positions, selectedCells))
             {
-                Debug.Log("FOUND");
-                gridWord.isFound = true;
-                return true;
+                if (!gridWord.isFound)
+                {
+                    Manager.instance.findWord(gridWord);
+                    gridWord.isFound = true;
+                    ClearSelection();
+                    return true;
+                }
+                ClearSelection();
             }
         }
         return false;

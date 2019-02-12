@@ -26,7 +26,8 @@ public class WordInput : MonoBehaviour
             }
             if (currentWord == null)
             {
-                //repeat because couldn't finish
+                Manager.instance.ResetBoard();
+                Manager.instance.SetBoard();
             }
         }
     }
@@ -57,6 +58,10 @@ public class WordInput : MonoBehaviour
     //Tenta Colocar uma palavra no tabuleiro, testando todas as direcoes e posicoes possiveis em ordem aleatoria
     public bool setWord(string word)
     {
+        if(word == null)
+        {
+            return false;
+        }
         List<Cell> usedCells = new List<Cell>();
         word = word.ToUpper();
         Cell target = grid.RandomCell();
@@ -77,6 +82,26 @@ public class WordInput : MonoBehaviour
         {
             return false;
         }
+    }
+
+    //Escolhe uma direção aleatoria e verifica se é possivel colocar a palavra
+    public bool CheckforEachDirection(string word, Cell target)
+    {
+        List<Vector2> PossibleDirections = new List<Vector2>() { new Vector2(1, 0), new Vector2(0, 1), new Vector2(1, 1) };
+        for (int i = 0; i < 3; i++)
+        {
+            Vector2 tryVector = PossibleDirections[Random.Range(0, PossibleDirections.Count)];
+            if (CheckFit(word, target, tryVector))
+            {
+                direction = tryVector;
+                return true;
+            }
+            else
+            {
+                PossibleDirections.Remove(tryVector);
+            }
+        }
+        return false;
     }
 
 
@@ -101,26 +126,6 @@ public class WordInput : MonoBehaviour
             }
             return true;
         }
-    }
-
-    //Escolhe uma direção aleatoria e verifica se é possivel colocar a palavra
-    public bool CheckforEachDirection(string word, Cell target)
-    {
-        List<Vector2> PossibleDirections = new List<Vector2>() { new Vector2(1, 0), new Vector2(0, 1), new Vector2(1, 1) };
-        for (int i = 0; i < 3; i++)
-        {
-            Vector2 tryVector = PossibleDirections[Random.Range(0, PossibleDirections.Count)];
-            if (CheckFit(word, target, tryVector))
-            {
-                direction = tryVector;
-                return true;
-            }
-            else
-            {
-                PossibleDirections.Remove(tryVector);
-            }
-        }
-        return false;
     }
 
     //Coloca a palavra verificada nas celulas verificadas nos metodos anteriores

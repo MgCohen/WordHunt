@@ -11,8 +11,6 @@ public class Cell : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler, I
     public bool random; //essa celula pertecen a uma palavra ou é aleatoria?
     public char Char; //letra da celula
 
-    private bool isClicked;
-
     [SerializeField]
     private Animator anim = null;
 
