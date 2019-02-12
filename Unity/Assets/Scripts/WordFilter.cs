@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class WordFilter : MonoBehaviour
 {
@@ -12,10 +11,10 @@ public class WordFilter : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            getLines();
-        }
+        //if (Input.GetKeyDown(KeyCode.I))
+        //{
+        //    getLines();
+        //}
     }
 
 
@@ -24,13 +23,17 @@ public class WordFilter : MonoBehaviour
         foreach (string Word in sec.Words)
         {
             Debug.Log("Next Word");
-            List<Cell> targets = findFirstLetter(Word.ToUpper()[0]);
-            foreach (Cell cell in targets)
-            {
-                cell.GetComponent<Image>().enabled = false;
-                Debug.Log("Next Cell");
-                checkOnBoard(cell, Word);
-            }
+            SearchWord(Word);
+        }
+    }
+
+    public void SearchWord(string word)
+    {
+        List<Cell> targets = findFirstLetter(word.ToUpper()[0]);
+        foreach (Cell cell in targets)
+        {
+            Debug.Log("Next Cell");
+            checkOnBoard(cell, word);
         }
     }
 
@@ -53,33 +56,35 @@ public class WordFilter : MonoBehaviour
     public void checkOnBoard(Cell target, string word)
     {
         List<Cell> targetCells = new List<Cell>();
-
-        Vector2 dir = new Vector2(1, 0);
-
-        for (int i = 1; i < word.Length; i++)
+        Vector2[] directions = new Vector2[3] { new Vector2(1, 0), new Vector2(0, 1), new Vector2(1, 1) };
+        foreach (Vector2 dir in directions)
         {
-            Debug.Log(i);
-            if ((target.gridPos+(dir * i)) == Manager.instance.cellGrid.GridSize)
+            targetCells.Add(target);
+            for (int i = 1; i < word.Length; i++)
             {
-                Debug.Log("bigger than grid");
-                targetCells.Clear();
-                break;
+                Vector2 newTarget = target.gridPos + (dir * i);
+                if ((newTarget - Manager.instance.cellGrid.GridSize).x >= 0 || (newTarget - Manager.instance.cellGrid.GridSize).y >= 0)
+                {
+                    Debug.Log("bigger than grid");
+                    targetCells.Clear();
+                    break;
+                }
+                if (Manager.instance.cellGrid.cells[(int)newTarget.x, (int)newTarget.y].Char != word.ToUpper()[i])
+                {
+                    //check why didn't match
+                    Debug.Log(new Vector2((int)newTarget.x, (int)newTarget.y) + " " + Manager.instance.cellGrid.cells[(int)newTarget.x, (int)newTarget.y].Char + " not match " + word.ToUpper()[i]);
+                    targetCells.Clear();
+                    break;
+                }
+                targetCells.Add(Manager.instance.cellGrid.cells[(int)newTarget.x, (int)newTarget.y]);
             }
-            if (Manager.instance.cellGrid.cells[(int)target.gridPos.x + i, (int)target.gridPos.y].Char != word.ToUpper()[i])
+            if (targetCells.Count > 0)
             {
-                Debug.Log(new Vector2((int)target.gridPos.x + i, (int)target.gridPos.y) + " " + Manager.instance.cellGrid.cells[(int)target.gridPos.x + i, (int)target.gridPos.y].Char + " not match " + word.ToUpper()[i]);
-                targetCells.Clear();
-                break;
+                Debug.Log("found");
+                foundWords.Add(new GridedWord(word, targetCells, true));
             }
-            targetCells.Add(Manager.instance.cellGrid.cells[(int)target.gridPos.x + i, (int)target.gridPos.y]);
-            Debug.Log(word.ToUpper()[i]);
+            targetCells.Clear();
         }
-        if (targetCells.Count > 0)
-        {
-            Debug.Log("found");
-            foundWords.Add(new GridedWord(word, targetCells));
-        }
-        targetCells.Clear();
     }
 
 }

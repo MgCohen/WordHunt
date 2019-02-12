@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WordFinder : MonoBehaviour
 {
@@ -58,28 +59,30 @@ public class WordFinder : MonoBehaviour
 [System.Serializable]
 public class GridedWord
 {
-    public GridedWord(string thisWord, List<Cell> myPos)
+    public GridedWord(string thisWord, List<Cell> myPos, bool reveal = false)
     {
         word = thisWord;
-        fillList(myPos);
+        fillList(myPos, reveal);
         //positions = myPos;
         wordChars.AddRange(thisWord.ToUpper());
     }
 
-    public GridedWord(List<char> letters, List<Cell> myPos)
+    public GridedWord(List<char> letters, List<Cell> myPos, bool reveal = false)
     {
         word = new string(letters.ToArray());
-        fillList(myPos);
+        fillList(myPos, reveal);
         //positions = myPos;
         wordChars = letters;
     }
 
-    public void fillList(List<Cell> newPos)
+    public void fillList(List<Cell> newPos, bool reveal = false)
     {
         positions.Clear();
         foreach (Cell cell in newPos)
         {
             positions.Add(cell);
+            if(reveal)
+            cell.GetComponent<Image>().enabled = false;
         }
     }
 
