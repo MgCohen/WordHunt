@@ -1,4 +1,4 @@
-# CrossWords
+# WordHunt
 Mental Labs - WordHunt
 
 <b>Notas:</b>
