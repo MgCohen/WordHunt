@@ -7,6 +7,12 @@ public class NumberWordsConfig : MonoBehaviour
 {
     public TMP_InputField NumberWords;
 
+    private void OnEnable()
+    {
+        NumberWords.text = MenuManager.instance.level.NumberOfWords.ToString();
+        CheckChange();
+    }
+
     public void CheckChange()
     {
         if(NumberWords.text == "")

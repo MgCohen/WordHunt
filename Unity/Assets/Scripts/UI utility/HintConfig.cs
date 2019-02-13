@@ -11,5 +11,6 @@ public class HintConfig : MonoBehaviour
     {
         if (hintNumber.text != "")
         MenuManager.instance.level.NumberOfHints = int.Parse(hintNumber.text);
+        
     }
 }

@@ -9,6 +9,14 @@ public class gridConfig : MonoBehaviour
     public TMP_InputField gridX;
     public TMP_InputField gridY;
 
+
+    private void OnEnable()
+    {
+        gridX.text = MenuManager.instance.level.GridSize.x.ToString();
+        gridY.text = MenuManager.instance.level.GridSize.y.ToString();
+        checkChange();
+    }
+
     //verifica para qual valor foi modificado, e se for menor q 5 muda para 5
     public void checkChange()
     {

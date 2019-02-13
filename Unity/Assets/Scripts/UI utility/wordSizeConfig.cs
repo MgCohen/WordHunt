@@ -9,6 +9,12 @@ public class wordSizeConfig : MonoBehaviour
 
     public TMP_InputField wordSize;
 
+    private void OnEnable()
+    {
+        wordSize.text = MenuManager.instance.level.MaxWordSize.ToString();
+        CheckChange();
+    }
+
     public void CheckChange()
     {
         if(wordSize.text == "")
