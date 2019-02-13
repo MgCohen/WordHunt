@@ -146,7 +146,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0.0000035346477, y: 0}
+  m_AnchoredPosition: {x: 0.000017917697, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &38230976
@@ -1116,15 +1116,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1658678036}
     m_Modifications:
-    - target: {fileID: 605113347468701748, guid: 814e9e6490a48d74080f81d39d5469cc,
-        type: 3}
-      propertyPath: SceneName
-      value: RulesSelection
-      objectReference: {fileID: 0}
     - target: {fileID: 1855287784559768987, guid: 814e9e6490a48d74080f81d39d5469cc,
         type: 3}
       propertyPath: m_Name
       value: Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 605113347468701748, guid: 814e9e6490a48d74080f81d39d5469cc,
+        type: 3}
+      propertyPath: SceneName
+      value: RulesSelection
       objectReference: {fileID: 0}
     - target: {fileID: 5466376682435624798, guid: 814e9e6490a48d74080f81d39d5469cc,
         type: 3}
@@ -1591,7 +1591,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 946619874}
   m_Direction: 0
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.99999994
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

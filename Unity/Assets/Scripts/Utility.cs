@@ -62,4 +62,18 @@ public class Utility
         }
         return true;
     }
+
+
+    public static int FindLesserOnList(List<string> list, int parameter)
+    {
+        int counter = 0;
+        foreach(string number in list)
+        {
+            if (number.Length <= parameter)
+            {
+                counter += 1;
+            }
+        }
+        return counter;
+    }
 }

@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46ee0b9765681d84792e402b25e8252b, type: 3}
   m_Name: Level Data
   m_EditorClassIdentifier: 
-  NumberOfWords: 10
-  GridSize: {x: 10, y: 10}
+  NumberOfWords: 0
+  GridSize: {x: 5, y: 10}
   Theme: {fileID: 11400000, guid: 8198a74a4767bce4a8e77477e1f06ff7, type: 2}
-  MinWordSize: 0
   MaxWordSize: 0

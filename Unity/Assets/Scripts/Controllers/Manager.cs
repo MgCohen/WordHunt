@@ -51,6 +51,11 @@ public class Manager : MonoBehaviour
         Debug.Log("set");
     }
 
+    private void OnEnable()
+    {
+        SetBoard();
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.P))

@@ -13,10 +13,17 @@ public class WordInput : MonoBehaviour
 
     private bool fail;
 
+    public int counter = 0;
+
     //Coloca todas as palavras no tabuleiro
     public void PopulateBoard(int NumberOfWords)
     {
         int wordCounter = 0;
+        if (counter > 15)
+        {
+            Debug.Log("too many attempts");
+            return;
+        }
         //loop o numero de palavras requisitadas
         for (int i = 0; i < NumberOfWords; i++)
         {
@@ -39,6 +46,7 @@ public class WordInput : MonoBehaviour
             fail = false;
             Manager.instance.ResetBoard();
             Manager.instance.SetBoard();
+            counter += 1;
         }
         else
         {
@@ -50,6 +58,8 @@ public class WordInput : MonoBehaviour
                     fail = false;
                     Manager.instance.ResetBoard();
                     Manager.instance.SetBoard();
+                    counter += 1;
+                    return;
                 }
             }
             foreach(string repeatedWord in Manager.instance.level.Theme.Words)
@@ -64,6 +74,12 @@ public class WordInput : MonoBehaviour
                 fail = false;
                 Manager.instance.ResetBoard();
                 Manager.instance.SetBoard();
+                counter += 1;
+            }
+            else
+            {
+                counter = 0;
+                Debug.Log("COUNTER RESET");
             }
         }
 
