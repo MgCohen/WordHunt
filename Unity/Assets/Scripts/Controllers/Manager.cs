@@ -34,6 +34,8 @@ public class Manager : MonoBehaviour
 
     public int wordsFound;
 
+    public GameObject winPanel;
+
     public void SetBoard()
     {
         if (isFirst)
@@ -48,20 +50,11 @@ public class Manager : MonoBehaviour
             wordInput.PopulateBoard(level.NumberOfWords);
             isSet = true;
         }
-        Debug.Log("set");
     }
 
     private void OnEnable()
     {
         SetBoard();
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            StartCoroutine(testing());
-        }
     }
 
     public void ResetBoard()
@@ -72,7 +65,6 @@ public class Manager : MonoBehaviour
         showWords.ClearWords();
 
         wordsFound = 0;
-        Debug.Log("Reset");
     }
 
     public void findWord(GridedWord word)
@@ -80,21 +72,9 @@ public class Manager : MonoBehaviour
         wordsFound += 1;
         if (wordsFound == level.NumberOfWords)
         {
-            //win
+            winPanel.SetActive(true);
         }
-        showWords.displayWord(word.word);
-    }
-
-
-    IEnumerator testing()
-    {
-        while (true)
-        {
-            SetBoard();
-            yield return null;
-            ResetBoard();
-            yield return null;
-        }
+        showWords.wordFound(word.word);
     }
 
 }
