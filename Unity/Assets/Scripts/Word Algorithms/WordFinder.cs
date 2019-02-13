@@ -106,4 +106,12 @@ public class GridedWord
         }
     }
 
+    public void setRandom(bool trueorFalse)
+    {
+        foreach(Cell cell in positions)
+        {
+            cell.random = trueorFalse;
+        }
+    }
+
 }

@@ -34,6 +34,8 @@ public class Manager : MonoBehaviour
 
     public int wordsFound;
 
+    public GameObject winPanel;
+
     public void SetBoard()
     {
         if (isFirst)
@@ -80,9 +82,9 @@ public class Manager : MonoBehaviour
         wordsFound += 1;
         if (wordsFound == level.NumberOfWords)
         {
-            //win
+            winPanel.SetActive(true);
         }
-        showWords.displayWord(word.word);
+        showWords.wordFound(word.word);
     }
 
 

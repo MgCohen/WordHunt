@@ -7,15 +7,25 @@ public class wordCountUI : MonoBehaviour
 {
 
     public TextMeshProUGUI text;
+    private int foundWords;
     private int totalwords;
-    // Update is called once per frame
+
+    public ParticleSystem particle;
+
 
     private void Start()
     {
         totalwords = Manager.instance.level.NumberOfWords;
+        text.text = (totalwords - Manager.instance.wordsFound).ToString();
+        foundWords = 0;
     }
     void Update()
     {
-        text.text = (totalwords - Manager.instance.wordsFound).ToString();
+        if (foundWords != Manager.instance.wordsFound)
+        {
+            text.text = (totalwords - Manager.instance.wordsFound).ToString();
+            foundWords = Manager.instance.wordsFound;
+            particle.Play();
+        }
     }
 }

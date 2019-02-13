@@ -117,8 +117,9 @@ public class WordInput : MonoBehaviour
         }
         if(WordFilter.SearchWord(word) != null)
         {
-            int index = Random.Range(0, 3);
+            int index = Random.Range(0, 2);
             Manager.instance.gridWords.Add(WordFilter.SearchWord(word, index));
+            WordFilter.SearchWord(word, index).setRandom(false);
             return true;
         }
         List<Cell> usedCells = new List<Cell>();
