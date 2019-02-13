@@ -1,8 +1,18 @@
 # CrossWords
 Mental Labs - CrossWords
 
+Notas:
+  -Devido a limitação visual, o tamanho maximo da grade é 15
+  -Como não consegui pensar em muitos palavros ou palavras ruins, o filtro esta limitado.
+  Para adicionar mais palavras ao filtro basta adicionar as palavras banidas ao dicionario.
+  -Para adicionar mais temas basta adicionar nova "Section" ao discionario.
+  -Todas as partidas são 100% procedurais. O jogador tem a opcao de definir o tamanho/configurações da partida, mas os valores podiam ser simplesmente aleatorios.
+  
 
-Projeto de jogo para entrevista da MentalLabs,
+
+
+
+Projeto de jogo para entrevista da MentalLabs:
 
 -As dimensões do puzzle fica a seu critério
 
