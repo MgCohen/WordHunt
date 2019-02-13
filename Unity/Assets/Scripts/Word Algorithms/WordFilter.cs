@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class WordFilter : MonoBehaviour
 {
+    //Coleção de metodos estaticos para serem usados ao filtrar palavras
 
 
+    //filtra todas as palavras no board e procura por uma palavra especifica em uma das 3 direções
     public static GridedWord SearchWord(string word, int Index = 0)
     {
         List<Cell> targets = findFirstLetter(word.ToUpper()[0]);

@@ -7,6 +7,10 @@ using UnityEngine.EventSystems;
 public class Cell : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler, IPointerExitHandler
 {
 
+    //elemento basico que compõe o board
+    //cada celula representa uma letra, e pode ser selecionada para formar uma palavra
+
+
     public Vector2 gridPos; //pos no tabuleiro
     public bool random; //essa celula pertecen a uma palavra ou é aleatoria?
     public char Char; //letra da celula
@@ -15,7 +19,7 @@ public class Cell : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler, I
     private Animator anim = null;
 
     [SerializeField]
-    private TextMeshProUGUI text = null; //letra da celula(texto) (null para evitar warning no console)
+    private TextMeshProUGUI text = null; //letra da celula(texto)
 
     //Setter das celulas para definir seus valores
     public void setCell(Vector2 pos, bool isRandom, char character)
@@ -26,6 +30,7 @@ public class Cell : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler, I
         Char = character;
     }
 
+    //Setter da celula quando ela ja possui posições definidas
     public void setCell(bool isRandom, char Character)
     {
         random = isRandom;

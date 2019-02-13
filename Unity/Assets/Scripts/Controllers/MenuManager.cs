@@ -20,9 +20,4 @@ public class MenuManager : MonoBehaviour
 
     public LevelData level;
     public Dictionary dictionary;
-
-    public void SelectSection(Section sec)
-    {
-        level.Theme = sec;
-    }
 }

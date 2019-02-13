@@ -10,6 +10,7 @@ public class LevelData : ScriptableObject
     public Vector2 GridSize; //tamanho do mapa
     public Section Theme; //tematica usada
     public int MaxWordSize; //maximo numero de caracteres em uma palavra
+    public int NumberOfHints; //numero de dicas que podem ser dadas em cada partida
 
 
 }

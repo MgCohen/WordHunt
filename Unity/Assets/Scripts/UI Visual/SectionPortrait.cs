@@ -8,6 +8,8 @@ using UnityEngine.EventSystems;
 public class SectionPortrait : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
 
+    //classe para representação visual dos temas a serem escolhidos
+
     public Section section;
 
     public Animator anim;
@@ -45,6 +47,6 @@ public class SectionPortrait : MonoBehaviour, IPointerClickHandler, IPointerEnte
 
     public void OnPointerClick(PointerEventData data)
     {
-        MenuManager.instance.SelectSection(section);
+        MenuManager.instance.level.Theme = section;
     }
 }

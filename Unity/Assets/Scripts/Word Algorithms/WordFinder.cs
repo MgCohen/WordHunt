@@ -5,7 +5,10 @@ using UnityEngine.UI;
 
 public class WordFinder : MonoBehaviour
 {
-    public GameObject wordMaker;
+    //algoritmo para encontra palavras em um board
+    //utiliza da definição de uma GridedWord e roda em todas as posições possiveis no tabuleiro
+
+
 
     //lista de celulas selecionadas
     public List<Cell> selectedCells;
@@ -16,6 +19,8 @@ public class WordFinder : MonoBehaviour
         selectedCells.Add(cell);
         CheckCells();
     }
+
+    public GameObject wordMarker;
 
     //remove celula e verifica se encontrou palavra
     public void DeselectCell(Cell cell)
@@ -57,11 +62,9 @@ public class WordFinder : MonoBehaviour
 
     public void MarkFoundCells(GridedWord gridWord)
     {
-        GameObject marker = Instantiate(wordMaker, transform);
+        GameObject marker = Instantiate(wordMarker, transform);
         RectTransform markerTransform = marker.GetComponent<RectTransform>();
-        //Vector2 one = gridWord.positions[0].transform.position;
         Vector2 one = gridWord.positions[0].GetComponent<RectTransform>().position;
-        //Vector2 last = gridWord.positions[gridWord.positions.Count-1].transform.position;
         Vector2 last = gridWord.positions[gridWord.positions.Count -1].GetComponent<RectTransform>().position;
         Vector2 middle = new Vector2((one.x + last.x) / 2, (one.y + last.y) / 2);
         float width = (last - one).magnitude * 50;
@@ -85,6 +88,7 @@ public class GridedWord
     public bool isFound;
     public List<char> wordChars = new List<char>();
 
+    //setter com string
     public GridedWord(string thisWord, List<Cell> myPos)
     {
         word = thisWord;
@@ -92,12 +96,14 @@ public class GridedWord
         wordChars.AddRange(thisWord.ToUpper());
     }
 
+    //setter com CharList
     public GridedWord(List<char> letters, List<Cell> myPos)
     {
         word = new string(letters.ToArray());
         fillList(myPos);
         wordChars = letters;
     }
+
 
     public void fillList(List<Cell> newPos)
     {
@@ -108,6 +114,7 @@ public class GridedWord
         }
     }
 
+    //define se as celulas dessa palavra são randomicas ou não
     public void setRandom(bool trueorFalse)
     {
         foreach(Cell cell in positions)

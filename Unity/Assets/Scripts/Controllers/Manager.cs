@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Manager : MonoBehaviour
 {
+
+    //Classe controladora durante GamePlay
+    //Singleton usado para facilitar acesso ao dicionario e a construção do board
+
+
     public static Manager instance;
 
     private void Awake()
@@ -26,14 +31,17 @@ public class Manager : MonoBehaviour
     public WordFinder wordFinder;
     public showWord showWords;
 
+
+    //flags para setar o board
     private bool isFirst = true;
     private bool isSet = false;
 
     //lista de palavras e a posicao de cada letra
     public List<GridedWord> gridWords;
-
+    //contador de palavras encontradas
     public int wordsFound;
 
+    //referencia ao painel de vitoria para finalizar partida
     public GameObject winPanel;
 
     public void SetBoard()

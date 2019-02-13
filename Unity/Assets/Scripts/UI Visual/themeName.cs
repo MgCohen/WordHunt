@@ -5,10 +5,14 @@ using TMPro;
 
 public class themeName : MonoBehaviour
 {
+    //modifcação de texto baseado no tema atualmente escolhido
+
+
     TextMeshProUGUI text;
     private enum type { Menu, Game }
     [SerializeField]
-    private type themeType;
+    private type themeType = type.Menu;
+
     private void Start()
     {
         text = GetComponent<TextMeshProUGUI>();

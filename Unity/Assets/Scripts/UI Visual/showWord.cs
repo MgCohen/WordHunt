@@ -5,6 +5,8 @@ using TMPro;
 
 public class showWord : MonoBehaviour
 {
+    //representação visual de todas as palavras ja encontradas durante o gameplay
+
 
     public Transform target;
     public GameObject wordPrefab;
@@ -18,6 +20,7 @@ public class showWord : MonoBehaviour
         }
     }
 
+    //para cada palavra presente no jogo, coloca na lista
     public void displayWord(string word)
     {
         GameObject newWord = Instantiate(wordPrefab, target);
@@ -25,6 +28,8 @@ public class showWord : MonoBehaviour
         newWord.GetComponentInChildren<TextMeshProUGUI>().text = word;
     }
 
+
+    //se uma palavra for encontrada, muda a cor e coloca no fim da lista
     public void wordFound(string word)
     {
         foreach(GameObject wordObj in words)

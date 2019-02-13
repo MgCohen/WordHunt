@@ -6,6 +6,11 @@ using TMPro;
 
 public class CellGrid : MonoBehaviour
 {
+    //class de criação do board
+    //cria uma grade IxJ de celulas que contem uma letra
+
+
+
     public GameObject Cell; //Cell prefab para fazer o tabuleiro
     public RectTransform gameArea; //area que sera utilizada como tabuleiro
     public Vector2 GridSize; //numero de letras usadas

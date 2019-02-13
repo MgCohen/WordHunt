@@ -7,6 +7,8 @@ using UnityEngine.EventSystems;
 public class fontAnim : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
 
+    //simples animação da palavra quando o mouse passa por cima dela
+
     private Animator anim;
     // Start is called before the first frame update
     void Start()
