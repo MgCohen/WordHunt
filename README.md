@@ -1,5 +1,5 @@
 # CrossWords
-Mental Labs - CrossWords
+Mental Labs - WordHunt
 
 <b>Notas:</b>
 
