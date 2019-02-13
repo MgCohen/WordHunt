@@ -45,7 +45,6 @@ public class SectionPortrait : MonoBehaviour, IPointerClickHandler, IPointerEnte
 
     public void OnPointerClick(PointerEventData data)
     {
-        anim.SetBool("Hover", false);
-        anim.SetBool("Selected", true);
+        MenuManager.instance.SelectSection(section);
     }
 }

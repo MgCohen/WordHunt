@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Themes:
   - {fileID: 11400000, guid: 2d0b778fe54793245b16f65fae95c4f7, type: 2}
+  - {fileID: 11400000, guid: 8198a74a4767bce4a8e77477e1f06ff7, type: 2}
   BannedWords: []

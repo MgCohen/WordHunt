@@ -7,14 +7,6 @@ public class WordFinder : MonoBehaviour
 {
     public GameObject wordMaker;
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            MarkFoundCells(Manager.instance.gridWords[0]);
-        }
-    }
-
     //lista de celulas selecionadas
     public List<Cell> selectedCells;
 
@@ -52,6 +44,7 @@ public class WordFinder : MonoBehaviour
                 if (!gridWord.isFound)
                 {
                     Manager.instance.findWord(gridWord);
+                    MarkFoundCells(gridWord);
                     gridWord.isFound = true;
                     ClearSelection();
                     return true;
@@ -73,8 +66,8 @@ public class WordFinder : MonoBehaviour
 
         marker.transform.position = middle;
         markerTransform.sizeDelta = new Vector2(width, markerTransform.sizeDelta.y );
-
-        Debug.Log(Vector2.Angle(one, last));
+        float angle = Mathf.Atan2(one.y - last.y, one.x - last.x) * 180 / Mathf.PI;
+        markerTransform.Rotate(0, 0, angle);
     }
 
 }

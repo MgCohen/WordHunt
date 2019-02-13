@@ -10,6 +10,9 @@ public class LevelData : ScriptableObject
     public Vector2 GridSize; //tamanho do mapa
     public Section Theme; //tematica usada
 
+    public int MinWordSize;
+    public int MaxWordSize;
+
 }
 
 

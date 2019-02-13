@@ -14,7 +14,7 @@ public class WordFilter : MonoBehaviour
             //Debug.Log("Next Cell");
             if(LookOnBoard(cell, word).Count > 0)
             {
-                return LookOnBoard(cell, word)[Mathf.Clamp(Index,0,LookOnBoard(cell,word).Count)];
+                return LookOnBoard(cell, word)[Mathf.Clamp(Index,0,LookOnBoard(cell,word).Count - 1)];
             }
         }
         return null;
