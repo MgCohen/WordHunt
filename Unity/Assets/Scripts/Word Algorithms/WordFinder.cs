@@ -59,10 +59,12 @@ public class WordFinder : MonoBehaviour
     {
         GameObject marker = Instantiate(wordMaker, transform);
         RectTransform markerTransform = marker.GetComponent<RectTransform>();
-        Vector2 one = gridWord.positions[0].transform.position;
-        Vector2 last = gridWord.positions[gridWord.positions.Count-1].transform.position;
+        //Vector2 one = gridWord.positions[0].transform.position;
+        Vector2 one = gridWord.positions[0].GetComponent<RectTransform>().position;
+        //Vector2 last = gridWord.positions[gridWord.positions.Count-1].transform.position;
+        Vector2 last = gridWord.positions[gridWord.positions.Count -1].GetComponent<RectTransform>().position;
         Vector2 middle = new Vector2((one.x + last.x) / 2, (one.y + last.y) / 2);
-        float width = (last - one).magnitude;
+        float width = (last - one).magnitude * 50;
 
         marker.transform.position = middle;
         markerTransform.sizeDelta = new Vector2(width, markerTransform.sizeDelta.y );

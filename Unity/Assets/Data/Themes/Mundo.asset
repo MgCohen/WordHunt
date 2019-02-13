@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55068eb70b12cb643b02cc5b7f1f5820, type: 3}
+  m_Name: Mundo
+  m_EditorClassIdentifier: 
+  Theme: Mundo
+  ThemeImage: {fileID: 21300000, guid: 90b02c677468f9f46af3ecc0dc98e1ef, type: 3}
+  Words:
+  - Recife
+  - Fortaleza
+  - Natal
+  - Lisboa
+  - Londres
+  - Inglaterra
+  - Europa
+  - America
+  - China
+  - Roma
+  - Irlanda
+  - Islandia
+  - Bahia
