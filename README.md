@@ -1,7 +1,8 @@
 # CrossWords
 Mental Labs - CrossWords
 
-Notas:
+<b>Notas:</b>
+
   -Devido a limitação visual, o tamanho maximo da grade é 15
   
   -Como não consegui pensar em muitos palavros ou palavras ruins, o filtro esta limitado. Para adicionar mais palavras ao filtro basta adicionar as palavras banidas ao dicionario.
@@ -14,7 +15,7 @@ Notas:
 
 
 
-Projeto de jogo para entrevista da MentalLabs:
+<b>Projeto de jogo para entrevista da MentalLabs:</b>
 
 -As dimensões do puzzle fica a seu critério
 
