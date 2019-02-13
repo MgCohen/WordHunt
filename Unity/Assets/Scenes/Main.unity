@@ -2408,7 +2408,6 @@ MonoBehaviour:
   usedWords: []
   grid: {fileID: 1383354319}
   finder: {fileID: 1383354320}
-  counter: 0
 --- !u!1001 &1389078912
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3168,7 +3167,7 @@ MonoBehaviour:
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 1
+  m_ScrollSensitivity: 10
   m_Viewport: {fileID: 941067850}
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 0}

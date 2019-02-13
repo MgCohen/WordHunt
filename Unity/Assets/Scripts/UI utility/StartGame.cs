@@ -24,7 +24,6 @@ public class StartGame : MonoBehaviour
     //verifica se os parametros podem formar um tabuleiro
     public bool CheckConditions()
     {
-
         if (level.NumberOfWords > Utility.FindLesserOnList(level.Theme.Words, level.MaxWordSize) ||
             level.NumberOfWords == 0 ||
             level.NumberOfWords > Mathf.Max(level.GridSize.x, level.GridSize.y) - 1)
@@ -48,6 +47,7 @@ public class StartGame : MonoBehaviour
             errorPanel.SetActive(true);
             return false;
         }
+
         return true;
     }
 }

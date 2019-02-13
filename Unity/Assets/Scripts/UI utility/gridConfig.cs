@@ -20,10 +20,8 @@ public class gridConfig : MonoBehaviour
     //verifica para qual valor foi modificado, e se for menor q 5 muda para 5
     public void checkChange()
     {
-        Debug.Log("changed");
         if(gridX.text == "" || gridY.text == "")
         {
-            Debug.Log("is Empty");
             return;
         }
         Vector2 gridSize = new Vector2(Mathf.Clamp(int.Parse(gridX.text), 5, 15), Mathf.Clamp(int.Parse(gridY.text), 5, 15));

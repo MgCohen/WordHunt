@@ -17,7 +17,10 @@ public class WordInput : MonoBehaviour
 
     private bool fail;
 
-    public int counter = 0;
+    private int counter = 0;
+
+    //flag to exit loop
+    private bool NotEnoughWords = false;
 
     //Coloca todas as palavras no tabuleiro
     public void PopulateBoard(int NumberOfWords)
