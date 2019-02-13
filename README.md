@@ -3,6 +3,10 @@ Mental Labs - WordHunt
 
 <b>Notas:</b>
 
+  -Para encontrar uma palavra, você deve ter todas as letras da palavra selecionada e SOMENTE essas letras. para evitar encontrar palavras por acidente ou de forma aleatoria.
+
+  -Devido a natureza procedural, alguns parametros são limitados para ser possivel criar um tabuleiro com as palavras
+
   -Devido a limitação visual, o tamanho maximo da grade é 15
   
   -Como não consegui pensar em muitos palavros ou palavras ruins, o filtro esta limitado. Para adicionar mais palavras ao filtro basta adicionar as palavras banidas ao dicionario.
